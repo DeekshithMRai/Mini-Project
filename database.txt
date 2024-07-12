@@ -1,0 +1,82 @@
+use agritech;
+create table contact(
+name varchar(20),
+email varchar(25),
+subject varchar(50),
+message TEXT,
+primary key(email,subject));
+
+select * from contact;
+create table category(
+    category_name varchar(40),
+   id int primary key
+);
+create table product(
+id int primary key auto_increment,
+name varchar(20),
+equipment varchar(50),
+phone varchar(25),
+email varchar(25),
+description text,
+image varchar(25),
+amount decimal(10,2),
+address text,
+perhour decimal(10,2)
+);
+
+insert into product values(1,'tractor','advith','122334555','this si email','this si description','/var/','222.2','this si address','22.2');
+select * from product;
+update  product set category=1 where id=6;
+delete from product where id=6;
+create table users(
+name varchar(20) ,
+email varchar(30) primary key,
+password varchar(20),
+type int default 3);
+
+insert into users values('advith','advith1@gmail.com','123','1');
+insert into users values ('deekshith','deekshith1@gmail.com','123','3');
+insert into users values ('deekshith','deekshith2@gmail.com','123','2');
+insert into users values ('arun','arun1@gmail.com','123','3');
+
+
+select * from users;
+desc users;
+create table orders(
+users varchar(30),
+product int,
+address text,
+total decimal(10,2),
+primary key(users,product),
+constraint order_user_fk foreign key (users) references users(email) on delete cascade,
+constraint order_product_fk foreign key(product) references product(id) on delete cascade);
+
+select * from orders;
+delete from orders where product=2;
+
+alter table orders add column order_date date ;
+select o.users,p.equipment,o.address,o.total,o.order_date from orders o, product p where p.id=o.product; 
+insert into category values("Mechanized  Equipment",1);
+alter table product add column category int default 1;
+alter table product add foreign key (category) references category(id) on delete cascade;
+
+create view products_category as  select product.id,name,equipment,phone,email,description,image,amount,address,perhour,category_name from product join  category on product.category=category.id ;
+select * from products_category;
+select product.id,name,equipment,phone,email,description,image,amount,address,perhour,category_name from product join  category on product.category=category.id ;
+
+update product set category=1 where id=1;
+desc users;
+-- below codes are not used
+-- Alter the category table
+-- ALTER TABLE category
+-- DROP PRIMARY KEY,
+-- MODIFY COLUMN category_name VARCHAR(40) PRIMARY KEY,
+-- MODIFY COLUMN id INT auto_increment;
+
+-- -- Alter the product table
+-- ALTER TABLE product
+-- DROP FOREIGN KEY fk_category,
+-- ADD FOREIGN KEY (category) REFERENCES category(category_name) ON DELETE CASCADE;
+
+-- select * from product;
+-- delete from product where id=8;

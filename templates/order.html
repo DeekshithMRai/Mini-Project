@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AgriTech</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/static/css/order.css">
+  <link rel="stylesheet" href="/static/css/order1.css">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">Agri<span>Tech</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
+          <!-- <li class="nav-item active"><a href="pricing.html" class="nav-link">Categories</a></li> -->
+          <!-- <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="car.html" class="nav-link">Vendor's List</a></li> -->
+          <!-- <li class="nav-item"><a href="./signup.html" class="nav-link">Upload Equipment</a></li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END nav -->
+
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h2>Shopping Cart</h2>
+        <table class="table">
+          <thead>
+            <tr class="ml-5">
+              <th style="text-align: start;">Product</th>
+              <th style="text-align: start;">Hours</th>
+              <th style="text-align: start;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody class="ml-5">
+            <tr>
+              <td class="fw-bold">{{product.name}}</td>
+              <td class="fw-bold"><input type="number" id="qty"
+                  onchange="document.getElementById('amount').innerText={{product.amount}}*document.getElementById('qty').value;document.getElementById('totalinput').value={{product.amount}}*document.getElementById('qty').value+20;document.getElementById('total').innerText={{product.amount}}*document.getElementById('qty').value+20"
+                  class="form-control form-control-sm" style="width: 70px;" value="1" min="1" max="5"></td>
+              <td class="fw-bold" id="amount">{{product.amount}}</td>
+            </tr>
+            <tr>
+              <td class="fw-bold"></td>
+              <td class="fw-bold">Tax</td>
+              <td class="fw-bold">20.00</td>
+            </tr>
+            <tr>
+              <td class="fw-bold"></td>
+              <td class="fw-bold">Total</td>
+              <td class="fw-bold" id="total"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <form action="/order/{{product.id}}" method="post">
+      <textarea name="address" id="address" class="form-control" cols="30" rows="5"
+        placeholder="Enter your address"></textarea>
+      <input type="text" name="user" id="userinput" hidden>
+      <input type="text" name="total" id="totalinput" hidden>
+      <script>
+        document.getElementById('userinput').value = sessionStorage.getItem('user')
+      </script>
+      <button type="submit" class="btn btn-primary my-3">place order</button>
+    </form>
+  </div>
+
+
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg></div>
+  </div>
+  <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2"><a href="/" class="logo">Agri<span>Tech</span></a></h2>
+            <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p> -->
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4 ml-md-5">
+            <h2 class="ftco-heading-2">Information</h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">About</a></li>
+              <li><a href="#" class="py-2 d-block">Services</a></li>
+              <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
+              <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+              <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Customer Support</h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+              <li><a href="#" class="py-2 d-block">How it works</a></li>
+              <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">Srinivas institute of Technology
+                  </span></li>
+                <li><a href="#"><span class="icon icon-phone"></span><span class="text">8431139564,9400148928</span></a>
+                </li>
+                <li><a href="#"><span class="icon icon-envelope"></span><span
+                      class="text">deekshtihmrai02@gmail.com</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+
+          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | Developed by Advith></a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function myFunction() {
+      var copyText = document.getElementById("mynumber");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+
+      navigator.clipboard.writeText(copyText.value);
+
+      alert("Copied the text: " + copyText.value);
+    }
+
+    const btn = document.querySelectorAll('copytext');
+    for (var i = 1; i <= btn.length; i++) {
+      btn[i].addEventListener('click', function () {
+        myFunction();
+      });
+    }
+
+
+
+
+  </script>
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery.easing.1.3.js"></script>
+  <script src="/static/js/jquery.waypoints.min.js"></script>
+  <script src="/static/js/jquery.stellar.min.js"></script>
+  <script src="/static/js/owl.carousel.min.js"></script>
+  <script src="/static/js/jquery.magnific-popup.min.js"></script>
+  <script src="/static/js/aos.js"></script>
+  <script src="/static/js/jquery.animateNumber.min.js"></script>
+  <script src="/static/js/bootstrap-datepicker.js"></script>
+  <script src="/static/js/jquery.timepicker.min.js"></script>
+  <script src="/static/js/scrollax.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script> -->
+  <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

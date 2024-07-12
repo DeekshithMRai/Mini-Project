@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            margin: top 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 170vh;
+            margin: 0;
+            background-color: #f2f2f2;
+            background-image: url('../static/images/background.jpg');
+            /* Path to your background image */
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .container {
+            max-width: 500px;
+            /* Set maximum width for the container */
+            width: 90%;
+            /* Set width to 90% of the viewport */
+            padding: 20px;
+        }
+
+        .card {
+            border: 2px solid black;
+            padding: 20px;
+            box-shadow: 0 6px 12px;
+            background: linear-gradient(0deg, rgba(255, 186, 33, 0.5) 0%, rgba(255, 186, 33, 1) 100%);
+            animation: slide-up 0.5s ease forwards;
+            border-radius: 10px;
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+        }
+
+        .card label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card input[type="text"],
+        .card input[type="email"],
+        .card input[type="tel"],
+        .card textarea,
+        .card input[type="number"],
+        .card button {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .card textarea {
+            resize: vertical;
+        }
+
+        .card button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-select {
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Add Product</h2>
+            <form action="/vendor/add" method="post" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+" title="Only letters and spaces allowed">
+            
+                <label for="equipment">Equipment:</label>
+                <input type="text" id="equipment" name="equipment" required>
+            
+                <div class="adda">
+                    <label for="selectOption" class="form-label">Select category:</label>
+                    <select class="form-select" id="selectOption" name="category">
+                        {% for i in categories %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number">
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address">
+            
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+            
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" step="0.01" required>
+            
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+            
+                <label for="perhour">Per Hour:</label>
+                <input type="number" id="perhour" name="perhour" step="0.01" required>
+            
+                <button type="submit">Submit</button>
+            </form>
+            
+
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

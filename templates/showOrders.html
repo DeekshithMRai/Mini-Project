@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+body{
+          display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.table th{
+        padding: 13px 24px;
+}
+
+.table td{
+    padding: 5px 3px;
+}
+body{
+    background-image: url("../static/images/background.jpg");
+}
+    </style>
+</head>
+<body>
+    <table class="table table-responsive table-bordered table-hover" style="background-color: white;">
+        <thead>
+            <td colspan="10"
+                style="background:#444; color:#fff; font-size:35px; border-color:#444; width: 100%; text-align: center;">
+                Order
+                Details</td>
+            <tr>
+
+                <!-- Table headers -->
+                <th>Order ID</th>
+                <th>User ID</th>
+                <th>product</th>
+                <th>Address</th>
+                <th>Total Amount</th>
+                <th>Order Date</th>
+        
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in orders %}
+            <tr>
+                <td  style="display: flex; justify-content: center;  border: 1px solid;">{{i.id}}</td>
+                <td ><input type="text" value="{{i.user}}" readonly></td>
+                <td><input type="text" value="{{i.product}}" readonly></td>
+                <td><input  readonly type="text" value="{{i.address}}"> </td>
+                <td><input  readonly type="text" value="{{i.total}}"> </td>
+                <td><input  readonly type="text" value="{{i.date}}"> </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

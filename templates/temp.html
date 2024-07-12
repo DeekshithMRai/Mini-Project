@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/" hidden id="home"></a>
+    <a href="/admin" hidden id="admin"></a>
+    <a href="/vendor" hidden id="vendor"></a>
+    <script>
+        var emaill='{{user}}';
+        sessionStorage.setItem('user',emaill);
+        if ({{type}}==1) {
+            sessionStorage.setItem('admin',emaill);
+            document.getElementById('admin').click();
+        } else if({{type}}==2){
+            sessionStorage.setItem('vendor',emaill);
+            document.getElementById('vendor').click();
+        }else{
+            document.getElementById('home').click();
+        }
+    </script>
+</body>
+</html>
